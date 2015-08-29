@@ -1,9 +1,12 @@
-FROM node:0.10
+FROM node:0.10.40
 
-ADD /src .
+RUN mkdir -p /var/www/prisoners-dilemma
+WORKDIR /var/www/prisoners-dilemma
 
+COPY package.json /var/www/prisoners-dilemma/
 RUN npm install
+COPY . /var/www/prisoners-dilemma
 
-EXPOSE 3000
+CMD [ "npm", "start" ]
 
-CMD ["npm", "start"]
+EXPOSE 3030
